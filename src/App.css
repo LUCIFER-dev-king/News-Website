@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "roboto", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  margin: 0.5rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  max-width: 1100px;
+  margin: auto;
+  overflow: auto;
+}
+
+#navbar {
+  background-color: #333;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  height: 80px;
+  width: 100%;
+}
+
+#navbar .navbar-logo {
+  display: flex;
+  justify-self: flex-start;
+  align-items: center;
+  cursor: pointer;
+  color: #1b98f5;
+}
+
+#navbar ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+#navbar ul li a {
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  color: #fff;
+}
+
+#navbar ul li a:hover {
+  border-bottom: 2px solid #1b98f5;
+  padding: 0.5rem;
+  cursor: pointer;
+  color: #1b98f5;
+}
+
+.navbar-btn {
+  border: none;
+  outline: none;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0.75rem;
+  border-radius: 40px;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-btn:hover {
+  color: #fff;
+  background-color: #1b98f5;
+  transition: all 0.2s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  grid-gap: 0.5rem;
+  overflow: hidden;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 250px auto;
+  grid-template-areas: image text btn;
+  margin: 1rem;
+  width: 400px;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+.card .card-image {
+  /* background: url("https://images.cnbctv18.com/wp-content/uploads/2018/03/shutterstock_281485004-768x432.jpg"); */
+  background-size: center no-repeat center/cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.card .card-text {
+  padding: 1rem;
+}
+
+.card .card-text a {
+  text-decoration: none;
+  color: #333;
+}
+
+.card .card-author {
+  text-align: right;
+  margin-right: 0.5rem;
+}
+
+footer {
+  background-color: #ddd;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
