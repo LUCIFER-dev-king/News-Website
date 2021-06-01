@@ -16,23 +16,19 @@ const TopheadlineCard = ({ articles }) => {
   return (
     <div className='grid-container'>
       {articles.map((article, index) => (
-        <div
-          key={index}
-          className='card'
-          onClick={() => sendArticle({ article })}
-        >
+        <div key={index} className='card-container'>
           <div
             className='card-image'
             style={{
               background: `url(${article.urlToImage})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
             }}
           ></div>
-          <div className='card-text'>
-            <a href='/article' article={article}>
-              {article.title}
-            </a>
-          </div>
-          <div className='card-author'>-{article.author}</div>
+          <h4 className='card-text'>{article.title}</h4>
+          <p className='card-date'>{article.publishedAt.slice(0, 10)}</p>
+          <a className='card-btn'>Read More</a>
         </div>
       ))}
     </div>

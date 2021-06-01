@@ -1,6 +1,6 @@
 import React from "react";
 import "../App.css";
-import { Link } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
 const Header = () => {
   return (
     <nav id='navbar'>
@@ -20,6 +20,7 @@ const Header = () => {
           </li>
         </ul>
         <button className='navbar-btn'>Sign In</button>
+        <FaBars className='navbar-icon' />
       </div>
     </nav>
   );

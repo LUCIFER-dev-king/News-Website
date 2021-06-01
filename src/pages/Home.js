@@ -12,7 +12,10 @@ const Home = () => {
       .get(
         `https://newsapi.org/v2/top-headlines?country=in&apiKey=${apiKey}&pageSize=6`
       )
-      .then((res) => setArticles(res.data.articles))
+      .then((res) => {
+        setArticles(res.data.articles);
+        console.log(articles);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -20,7 +23,7 @@ const Home = () => {
     headlineNews();
   }, []);
   return (
-    <div className='container' style={{ paddingLeft: "2rem" }}>
+    <div className='container home'>
       <h2>Top Headlines</h2>
       <TopheadlineCard articles={articles} />
       <h2>Business</h2>
