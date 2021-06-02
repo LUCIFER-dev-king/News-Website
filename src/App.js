@@ -7,9 +7,13 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Source from "./pages/Source";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Header from "./layout/Header";
-import Footer from "./layout/Footer";
-import Article from "./pages/Article";
+import Article from "./pages/Article/Article";
+import SignUp from "./pages/Authentication/SignUp";
+import SignIn from "./pages/Authentication/SignIn";
+import firebase from "firebase/app";
+
+import firebaseConfig from "./config/firebaseconfig";
+firebase.initializeApp(firebaseConfig);
 
 function App() {
   const test = () => {
@@ -24,13 +28,14 @@ function App() {
   return (
     <div className='App'>
       <Router>
-        <Header />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/source' component={Source} />
-          <Route path='/about' component={About} />
-          <Route path='/article' component={Article} />
+          <Route exact path='/source' component={Source} />
+          <Route exact path='/about' component={About} />
+          <Route exact path='/article' component={Article} />
+          <Route exact path='/signup' component={SignUp} />
         </Switch>
+        <Route exact path='/signin' component={SignIn} />
       </Router>
     </div>
   );

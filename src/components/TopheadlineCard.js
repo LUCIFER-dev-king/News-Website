@@ -26,9 +26,21 @@ const TopheadlineCard = ({ articles }) => {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-          <h4 className='card-text'>{article.title}</h4>
+          {console.log(article.title.length)}
+          {article.title.length > 85 ? (
+            <h4 className='card-text'>{article.title.slice(0, 90)}...</h4>
+          ) : (
+            <h4 className='card-text'>{article.title}</h4>
+          )}
           <p className='card-date'>{article.publishedAt.slice(0, 10)}</p>
-          <a className='card-btn'>Read More</a>
+          <a
+            className='card-btn'
+            onClick={() => {
+              sendArticle(article);
+            }}
+          >
+            Read More
+          </a>
         </div>
       ))}
     </div>
