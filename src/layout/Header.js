@@ -1,11 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../App.css";
-import { FaBars, FaArrowRight, FaAngleRight, FaUser } from "react-icons/fa";
+import {
+  FaBars,
+  FaArrowRight,
+  FaAngleRight,
+  FaUser,
+  FaTimes,
+} from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 
 const Header = ({ children }) => {
   const [hover, setHover] = useState(false);
   const [user, setUser] = useState("");
+  const barIcon = useRef("");
+  var sidebarContainer = useRef("");
+
+  const openSideBar = () => {
+    barIcon.current.style.opacity = "0";
+    sidebarContainer.current.className = "sidebar-container active";
+  };
+
+  const closeSideBar = () => {
+    barIcon.current.style.opacity = "1";
+    sidebarContainer.current.className = "sidebar-container";
+  };
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")));
     console.log(user);
@@ -55,7 +74,25 @@ const Header = ({ children }) => {
             </Link>
           )}
 
-          <FaBars className='navbar-icon' />
+          <div ref={barIcon} className='navbar-icon'>
+            <FaBars onClick={openSideBar}></FaBars>
+          </div>
+
+          <div ref={sidebarContainer} className='sidebar-container'>
+            <div className='sidebar-icon'>
+              <FaTimes
+                onClick={closeSideBar}
+                style={{ color: "#fff" }}
+              ></FaTimes>
+            </div>
+            <div className='sidebar-menu-wrapper'>
+              <div className='sidebar-menu-list'>Home</div>
+              <div className='sidebar-menu-list'>Source</div>
+              <div className='sidebar-menu-list'>About</div>
+              <div className='sidebar-menu-list'>Bookmark</div>
+              <div className='sidebar-menu-list'>Sign In</div>
+            </div>
+          </div>
         </div>
       </nav>
       {children}

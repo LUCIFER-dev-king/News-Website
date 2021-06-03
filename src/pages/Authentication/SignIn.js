@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import "./authentication.css";
 import firebase from "firebase/app";
 import "firebase/auth";
+import authenticationImage from "../../images/authentication.svg";
 
 const SignIn = ({ history: { push } }) => {
   const signupForm = useRef();
@@ -80,15 +81,7 @@ const SignIn = ({ history: { push } }) => {
 
   return (
     <div className='split-screen'>
-      <div className='left'>
-        <section className='left-content'>
-          <h1>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eius,
-            dolorem?
-          </h1>
-          <p>Let's get started</p>
-        </section>
-      </div>
+      <div className='left'></div>
       <div className='right'>
         <div ref={signupForm} className='right-signup'>
           <form onSubmit={handleSignUpSubmit}>
