@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../layout/Header";
-import "./ReadLater.css";
 import firebase from "firebase/app";
 import "firebase/database";
 import TopheadlineCard from "../../components/TopheadlineCard";
