@@ -13,6 +13,7 @@ import SignIn from "./pages/Authentication/SignIn";
 import firebase from "firebase/app";
 
 import firebaseConfig from "./config/firebaseconfig";
+import ReadLater from "./pages/Bookmarks/ReadLater";
 firebase.initializeApp(firebaseConfig);
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route exact path='/article' component={Article} />
           <Route exact path='/signup' component={SignUp} />
         </Switch>
+        <Route exact path='/readlater' component={ReadLater} />
         <Route exact path='/signin' component={SignIn} />
       </Router>
     </div>

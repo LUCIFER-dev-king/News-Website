@@ -15,7 +15,7 @@ const Home = () => {
       )
       .then((res) => {
         setArticles(res.data.articles);
-        console.log(articles);
+        console.log(res.data.articles);
       })
       .catch((err) => console.log(err));
   };
@@ -46,7 +46,7 @@ const Home = () => {
           </select>
         </div>
 
-        <TopheadlineCard articles={articles} />
+        <TopheadlineCard articles={articles} readlater={false} />
         <h2>Business</h2>
       </div>
     </Header>

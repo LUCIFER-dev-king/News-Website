@@ -1,14 +1,16 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import placeHolderImage from "../images/placeHolderImage.png";
 
-const TopheadlineCard = ({ articles }) => {
+const TopheadlineCard = ({ articles, readlater }) => {
   let history = useHistory();
 
-  const sendArticle = (article) => {
+  const sendArticle = (article, readlater) => {
     history.push({
       pathname: "/article",
       state: {
         article: article,
+        readlater: readlater,
       },
     });
   };
@@ -20,7 +22,9 @@ const TopheadlineCard = ({ articles }) => {
           <div
             className='card-image'
             style={{
-              background: `url(${article.urlToImage})`,
+              background: article.urlToImage
+                ? `url(${article.urlToImage})`
+                : `url(${placeHolderImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -36,7 +40,7 @@ const TopheadlineCard = ({ articles }) => {
           <a
             className='card-btn'
             onClick={() => {
-              sendArticle(article);
+              sendArticle(article, readlater);
             }}
           >
             Read More
