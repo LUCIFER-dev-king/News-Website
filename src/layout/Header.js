@@ -112,6 +112,11 @@ const Header = ({ children }) => {
       barIcon.current.style.opacity = "1";
       sidebarContainer.current.className = "sidebar-container";
     }, 2000);
+    setTimeout(() => {
+      history.push({
+        pathname: "/signin",
+      });
+    }, 4000);
   };
 
   useEffect(() => {

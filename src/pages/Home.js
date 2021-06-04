@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../App.css";
 import TopheadlineCard from "../components/TopheadlineCard";
 import Header from "../layout/Header";
@@ -9,6 +9,16 @@ const Home = () => {
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState("general");
   const [componentReload, setComponentReload] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  // const [pageSize, setPageSize] = useState(9);
+
+  // const loadingRef = useRef("");
+  // const handleObserver = () => {
+  //   setPageSize((prev) => prev + 6);
+  //   console.log(pageSize);
+  // };
+  // const observer = new IntersectionObserver(handleObserver);
+
   const headlineNews = () => {
     axios
       .get(
@@ -17,20 +27,24 @@ const Home = () => {
       .then((res) => {
         setArticles(res.data.articles);
         console.log(res.data.articles);
+        // setLoading(false);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
-    headlineNews();
+    headlineNews(9);
+    // observer.observe(loadingRef.current);
   }, [topic]);
 
   const handleChange = (e) => {
+    // setLoading(true);
     setComponentReload(false);
     setTopic(e.target.value);
     console.log(topic);
     setTimeout(() => {
       setComponentReload(true);
+      // setLoading(false);
     }, 1500);
   };
   return (
@@ -71,6 +85,15 @@ const Home = () => {
         {componentReload && (
           <TopheadlineCard articles={articles} readlater={false} />
         )}
+
+        {/*<div>
+          <h2
+            ref={loadingRef}
+            style={{ textAlign: "center", display: loading ? "none" : "block" }}
+          >
+            Loading....
+          </h2>
+        </div> */}
       </div>
     </Header>
   );

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import placeHolderImage from "../images/placeHolderImage.png";
 
@@ -14,15 +14,6 @@ const TopheadlineCard = ({ articles, readlater }) => {
       },
     });
   };
-
-  const articleContainer = () => {
-    console.log("jkdj");
-  };
-
-  useEffect(() => {
-    articleContainer();
-  }, [articles]);
-
   return (
     <div className='grid-container'>
       {articles.map((article, index) => (
@@ -38,7 +29,6 @@ const TopheadlineCard = ({ articles, readlater }) => {
               backgroundRepeat: "no-repeat",
             }}
           ></div>
-          {console.log(article.title.length)}
           {article.title.length > 85 ? (
             <h4 className='card-text'>{article.title.slice(0, 90)}...</h4>
           ) : (

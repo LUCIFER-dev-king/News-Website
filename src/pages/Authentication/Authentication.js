@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import "./authentication.css";
 import firebase from "firebase/app";
 import "firebase/auth";
-import authenticationImage from "../../images/authentication.svg";
 import Toast from "../../components/Toast";
 
 const SignIn = ({ history: { push } }) => {
