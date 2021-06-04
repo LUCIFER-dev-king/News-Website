@@ -8,6 +8,7 @@ const Home = () => {
   var apiKey = process.env.REACT_APP_APIKEY;
   const [articles, setArticles] = useState([]);
   const [topic, setTopic] = useState("general");
+  const [componentReload, setComponentReload] = useState(true);
   const headlineNews = () => {
     axios
       .get(
@@ -22,32 +23,54 @@ const Home = () => {
 
   useEffect(() => {
     headlineNews();
-  }, []);
+  }, [topic]);
 
   const handleChange = (e) => {
+    setComponentReload(false);
     setTopic(e.target.value);
     console.log(topic);
+    setTimeout(() => {
+      setComponentReload(true);
+    }, 1500);
   };
   return (
     <Header>
       <div className='container home'>
         <div className='home-title'>
-          <h2>Top Headlines</h2>
-          <select
-            className='dropDown'
-            value={topic}
-            onChange={handleChange.bind}
-          >
-            <option value='general'>Top Headlines</option>
-            <option value='entertainment'>Entertainment</option>
-            <option value='business'>Business</option>
-            <option value='health'>Health Care</option>
-            <option value='sports'>Sports</option>
+          {topic == "general" ? (
+            <h2 style={{ textTransform: "capitalize" }}>Top Headlines</h2>
+          ) : (
+            <h2 style={{ textTransform: "capitalize" }}>{topic}</h2>
+          )}
+
+          <select className='dropDown' onChange={handleChange}>
+            <option key='0' value='general'>
+              Top Headlines
+            </option>
+            <option key='1' value='entertainment'>
+              Entertainment
+            </option>
+            <option key='2' value='business'>
+              Business
+            </option>
+            <option key='3' value='health'>
+              Health Care
+            </option>
+            <option key='4' value='sports'>
+              Sports
+            </option>
+            <option key='5' value='science'>
+              Science
+            </option>
+            <option key='6' value='technology'>
+              Technology
+            </option>
           </select>
         </div>
 
-        <TopheadlineCard articles={articles} readlater={false} />
-        <h2>Business</h2>
+        {componentReload && (
+          <TopheadlineCard articles={articles} readlater={false} />
+        )}
       </div>
     </Header>
   );

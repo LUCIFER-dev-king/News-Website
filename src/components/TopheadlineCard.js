@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import placeHolderImage from "../images/placeHolderImage.png";
 
@@ -14,6 +14,14 @@ const TopheadlineCard = ({ articles, readlater }) => {
       },
     });
   };
+
+  const articleContainer = () => {
+    console.log("jkdj");
+  };
+
+  useEffect(() => {
+    articleContainer();
+  }, [articles]);
 
   return (
     <div className='grid-container'>

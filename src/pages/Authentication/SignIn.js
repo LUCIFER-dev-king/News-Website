@@ -3,10 +3,14 @@ import "./authentication.css";
 import firebase from "firebase/app";
 import "firebase/auth";
 import authenticationImage from "../../images/authentication.svg";
+import Toast from "../../components/Toast";
 
 const SignIn = ({ history: { push } }) => {
   const signupForm = useRef();
   const signinForm = useRef();
+
+  const [toastMsg, setToastMsg] = useState("");
+  const [toastClasName, settoastClasName] = useState("");
 
   const changeSignUpFormState = () => {
     signinForm.current.className = "right-signin";
@@ -34,6 +38,8 @@ const SignIn = ({ history: { push } }) => {
         .then((res) => {
           console.log(res);
           //context.setUser({ email: res.user.email, uid: res.user.uid });
+          setToastMsg("SignUp completed");
+          settoastClasName("toast active");
           changeSignUpFormState();
         })
         .catch((err) => {
@@ -51,6 +57,8 @@ const SignIn = ({ history: { push } }) => {
         .auth()
         .signInWithEmailAndPassword(email, password)
         .then((res) => {
+          setToastMsg("Signed In is successfully");
+          settoastClasName("toast active");
           console.log(res);
           //context.setUser({ email: res.user.email, uid: res.user.uid });
           var user = {
@@ -58,7 +66,10 @@ const SignIn = ({ history: { push } }) => {
             uid: res.user.uid,
           };
           localStorage.setItem("user", JSON.stringify(user));
-          push("/");
+
+          setTimeout(() => {
+            push("/");
+          }, 3000);
         })
         .catch((err) => {
           console.log(err);
@@ -81,6 +92,7 @@ const SignIn = ({ history: { push } }) => {
 
   return (
     <div className='split-screen'>
+      {toastMsg && <Toast toastTitle={toastMsg} className={toastClasName} />}
       <div className='left'></div>
       <div className='right'>
         <div ref={signupForm} className='right-signup'>
